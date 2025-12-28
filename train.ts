@@ -467,20 +467,38 @@ Database validation
 // // // MIT TASK ZJ
 
 
-function reduceNestedArray(arr: any[]): number {
-  let sum = 0;
+// function reduceNestedArray(arr: any[]): number {
+//   let sum = 0;
 
-  for (const item of arr) {
-    if (Array.isArray(item)) {
-      sum += reduceNestedArray(item);
-    } else if (typeof item === "number") {
-      sum += item;
+//   for (const item of arr) {
+//     if (Array.isArray(item)) {
+//       sum += reduceNestedArray(item);
+//     } else if (typeof item === "number") {
+//       sum += item;
+//     }
+//   }
+
+//   return sum;
+// }
+
+// // Test
+// console.log(reduceNestedArray([1, [1, 2, [4]]])); // 8
+// console.log(reduceNestedArray([1, 4, [5]])); // 10
+
+
+// // // MIT TASK ZK
+
+function printNumbers(): void {
+  let count = 1;
+
+  const intervalId = setInterval(() => {
+    console.log(count);
+    count++;
+
+    if (count > 5) {
+      clearInterval(intervalId);
     }
-  }
-
-  return sum;
+  }, 1000);
 }
 
-// Test
-console.log(reduceNestedArray([1, [1, 2, [4]]])); // 8
-console.log(reduceNestedArray([1, 4, [5]])); // 10
+printNumbers();
