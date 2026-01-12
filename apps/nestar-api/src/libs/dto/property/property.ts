@@ -29,6 +29,9 @@ export class Property {
 	propertySquare: number;
 
 	@Field(() => Int)
+	propertyBeds: number;
+
+	@Field(() => Int)
 	propertyRooms: number;
 
 	@Field(() => Int)
@@ -49,27 +52,27 @@ export class Property {
 	@Field(() => String, { nullable: true })
 	propertyDesc?: string;
 
-	@Field(() => Boolean) 
-  propertyBarter: boolean;
+	@Field(() => Boolean)
+	propertyBarter: boolean;
 
 	@Field(() => Boolean)
-  propertyRent: boolean;
+	propertyRent: boolean;
 
-	@Field(() => String) 
-  memberId: ObjectId;
+	@Field(() => String)
+	memberId: ObjectId;
 
 	@Field(() => Date, { nullable: true })
-  soldAt?: Date;
+	soldAt?: Date;
 
-	@Field(() => Date, { nullable: true }) 
-  deletedAt?: Date;
+	@Field(() => Date, { nullable: true })
+	deletedAt?: Date;
 
-	@Field(() => Date, { nullable: true }) 
-  constructedAt?: Date;
-  
-	@Field(() => Date) 
-  createdAt: Date;
+	@Field(() => Date, { nullable: true })
+	constructedAt?: Date;
 
-	@Field(() => Date) 
-  updatedAt: Date;
+	@Field(() => Date)
+	createdAt: Date;
+
+	@Field(() => Date)
+	updatedAt: Date;
 }
