@@ -10,7 +10,7 @@ import { InternalServerErrorException } from '@nestjs/common';
 import { AuthService } from '../auth/auth.service';
 import { MemberUpdate } from '../../libs/dto/member/member.update';
 import { ViewService } from '../view/view.service';
-import { StatisticsModier, T } from '../../libs/types/common';
+import { StatisticModifier, T } from '../../libs/types/common';
 import { ViewGroup } from '../../libs/enums/view.enum';
 
 @Injectable()
@@ -154,7 +154,7 @@ export class MemberService {
 		return result;
 	}
 
-	public async memberStatsEditor(input: StatisticsModier): Promise<Member> {
+	public async memberStatsEditor(input: StatisticModifier): Promise<Member> {
 		console.log("memberStatsEditor executed")
 		const { _id, targetKey, modifier } = input;
 		return await this.memberModel.findOneAndUpdate(
