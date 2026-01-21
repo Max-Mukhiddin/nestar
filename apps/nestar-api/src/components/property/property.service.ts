@@ -6,6 +6,7 @@ import { Direction, Message } from '../../libs/enums/common.enum';
 import {
 	AgentPropertiesInquiry,
 	AllPropertiesInquiry,
+	OrdinaryInquiry,
 	PropertiesInquiry,
 	PropertyInput,
 } from '../../libs/dto/property/property.input';
@@ -16,7 +17,7 @@ import { ViewService } from '../view/view.service';
 import { PropertyStatus } from '../../libs/enums/property.enum';
 const moment = require('moment');
 import { PropertyUpdate } from '../../libs/dto/property/property.update';
-import { lookupMember, shapeIntoMongoObjectId } from '../../libs/config';
+import { lookupAuthMemberLiked, lookupMember, shapeIntoMongoObjectId } from '../../libs/config';
 import { LikeService } from '../like/like.service';
 import { LikeInput } from '../../libs/dto/like/like.input';
 import { LikeGroup } from '../../libs/enums/like.enum';
@@ -73,7 +74,7 @@ export class PropertyService {
 			}
 			// meLiked
 			// meliked
-		const likeInput: LikeInput = {memberId, likeRefId: propertyId, likeGroup: LikeGroup.PROPERTY};
+			const likeInput: LikeInput = { memberId, likeRefId: propertyId, likeGroup: LikeGroup.PROPERTY };
 			targetProperty.meLiked = await this.likeService.checkLikeExistence(likeInput);
 		}
 
@@ -135,7 +136,8 @@ export class PropertyService {
 						list: [
 							{ $skip: (input.page - 1) * input.limit },
 							{ $limit: input.limit },
-							// me liked
+
+							lookupAuthMemberLiked(memberId),
 							lookupMember,
 							{ $unwind: '$memberData' },
 						],
@@ -178,6 +180,13 @@ export class PropertyService {
 				return { [ele]: true };
 			});
 		}
+	}
+
+	public async getFavorites(memberId: ObjectId, input: OrdinaryInquiry): Promise<Properties> {
+		return await this.likeService.getFavoriteProperties(memberId, input);
+	}
+	public async getVisited(memberId: ObjectId, input: OrdinaryInquiry): Promise<Properties> {
+		return await this.viewService.getVisitedProperties(memberId, input);
 	}
 
 	public async getAgentProperties(memberId: ObjectId, input: AgentPropertiesInquiry): Promise<Properties> {
