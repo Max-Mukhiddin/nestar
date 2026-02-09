@@ -8,7 +8,7 @@ export class SocketGateway implements OnGatewayInit {
 	private summaryClient: number = 0;
 
 	public afterInit(server: Server) {
-		this.logger.log(`WebSocket Server Initialized total: ${this.summaryClient}`);
+		this.logger.verbose(`WebSocket Server Initialized total: ${this.summaryClient}`);
 	}
 
 	handleConnection(client: WebSocket, ...args: any[]) {

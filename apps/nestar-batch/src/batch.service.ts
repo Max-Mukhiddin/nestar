@@ -71,4 +71,3 @@ export class BatchService {
 		return 'Welcome to Nestar BATCH Server!';
 	}
 }
- 

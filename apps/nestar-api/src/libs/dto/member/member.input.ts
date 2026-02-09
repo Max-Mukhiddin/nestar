@@ -41,7 +41,6 @@ export class LoginInput {
 	@Field(() => String)
 	memberPassword: string;
 }
-
 @InputType()
 class AISearch {
 	@IsOptional()
@@ -62,7 +61,7 @@ export class AgentsInquiry {
 	limit: number;
 
 	@IsOptional()
-	@IsIn([availableAgentSorts])
+	@IsIn(availableAgentSorts) // ✅ FIXED
 	@Field(() => String, { nullable: true })
 	sort?: string;
 
