@@ -49,7 +49,7 @@ const MemberSchema = new Schema(
 			default: '',
 		},
 
-		memberAdress: {
+		memberAddress: {
 			type: String,
 		},
 
@@ -103,7 +103,6 @@ const MemberSchema = new Schema(
 			type: Number,
 			default: 0,
 		},
-
 		deletedAt: {
 			type: Date,
 		},
